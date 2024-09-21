@@ -15,24 +15,30 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var loader: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    
+    func getApiHero(firstCall: Bool = true) {
         apiNetwork.getHeroes { heroes in
             DispatchQueue.main.async {
-                self.heroes = heroes
+                if firstCall {
+                    self.heroes = heroes
+                    self.loader.stopAnimating()
+                } else {
+                    self.heroes += heroes
+                }
                 self.tableView.reloadData()
-                self.loader.stopAnimating()
             }
         } onError: { error in
             DispatchQueue.main.async {
                 self.loader.stopAnimating()
             }
         }
-
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        // Do any additional setup after loading the view.
+        getApiHero()
     }
 
 

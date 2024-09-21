@@ -23,6 +23,8 @@ enum ApiKeys: String {
 }
 
 class HeroApiConfig {
+    private let limit = 30
+    private var offset = 0
     private let timestamp = String(Int(Date().timeIntervalSince1970 * 1000))
     
     private var md5: String {
@@ -37,7 +39,8 @@ class HeroApiConfig {
     var url: URL? {
         let baseURL = NetworkConstants.baseURL + NetworkConstants.baseEndpoint + NetworkConstants.heroEndpoint
         
-        let url = "\(baseURL)?ts=\(timestamp)&apikey=\(ApiKeys.publicKey.value)&hash=\(md5)"
+        let url = "\(baseURL)?ts=\(timestamp)&apikey=\(ApiKeys.publicKey.value)&hash=\(md5)&limit=\(limit)&offset=\(offset)"
+        offset += limit
         return URL(string: url)
     }
         

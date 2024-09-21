@@ -99,10 +99,10 @@
 			isa = PBXGroup;
 			children = (
 				0651B1F12C42CD2D00B08A26 /* ViewController.swift */,
-				EB73C9762C9F16C1002658C4 /* ViewController + HeroTableViewCellDelegate.swift */,
 				06C8C5C02C4C01650098F239 /* ViewController+UITableView.swift */,
 				06C8C5C62C4C11150098F239 /* HeroTableViewCell.swift */,
 				0666745A2C55438C00F31348 /* ViewController+DetailViewController.swift */,
+				EB73C9762C9F16C1002658C4 /* ViewController + HeroTableViewCellDelegate.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

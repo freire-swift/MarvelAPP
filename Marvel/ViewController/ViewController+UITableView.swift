@@ -36,6 +36,12 @@ extension ViewController: UITableViewDataSource{
         let hero: Hero = heroes[indexPath.row]
         heroCell.delegate = self
         heroCell.setup(index: indexPath.row, hero: hero)
+        
+        let isLastIndex = indexPath.row == heroes.count - 16
+        if isLastIndex {
+            getApiHero(firstCall: false)
+        }
+        
         return heroCell
     }
     
