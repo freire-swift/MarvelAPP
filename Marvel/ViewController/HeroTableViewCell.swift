@@ -20,6 +20,7 @@ class HeroTableViewCell: UITableViewCell{
     
     func setup(index: Int, hero: Hero){
         nameHero.text = hero.name
+        imageHero.image = .none
         apiNetwork.getData(path: hero.imageURL) {
             imageData in
             self.delegate?.saveImage(index: index, image: imageData)
