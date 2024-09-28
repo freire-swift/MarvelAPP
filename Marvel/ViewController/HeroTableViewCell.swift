@@ -21,16 +21,21 @@ class HeroTableViewCell: UITableViewCell{
     func setup(index: Int, hero: Hero){
         nameHero.text = hero.name
         imageHero.image = .none
-        apiNetwork.getData(path: hero.imageURL) {
-            imageData in
-            self.delegate?.saveImage(index: index, image: imageData)
-            DispatchQueue.main.async {
-                let image = UIImage(data: imageData)
-                self.imageHero.image = image
+        
+        if let image = hero.imageData{
+            let image = UIImage(data: image)
+            self.imageHero.image = image
+        } else {
+            apiNetwork.getData(path: hero.imageURL) {
+                imageData in
+                self.delegate?.saveImage(index: index, image: imageData)
+                DispatchQueue.main.async {
+                    let image = UIImage(data: imageData)
+                    self.imageHero.image = image
+                }
+            } onError: { error in
+                
             }
-        } onError: { error in
-            
         }
-
     }
 }
